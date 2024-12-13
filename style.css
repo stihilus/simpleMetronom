@@ -6,272 +6,294 @@
 }
 
 :root {
-    --spacing-unit: clamp(0.75rem, 1.5vw, 1.25rem);
+    --spacing-unit: 2px;
+    --bg-color: #111111;
+    --secondary-bg: #222222;
+    --text-color: #ffffff;
+    --accent-color: #FFE100;
+    --border-radius: 12px;
+    --container-height: 48px;
+    --section-gap: calc(var(--spacing-unit) * 6);
 }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
+    font-family: "Space Grotesk", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--spacing-unit);
+    letter-spacing: -0.02em;
 }
 
 .container {
     width: 100%;
-    max-width: 400px;
-    padding: var(--spacing-unit);
-    border: 2px solid #fff;
-}
-
-/* Typography */
-.title {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    margin-bottom: var(--spacing-unit);
-    text-align: center;
+    max-width: 360px;
+    padding: var(--section-gap);
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
 }
 
 .metronome {
     display: grid;
-    gap: calc(var(--spacing-unit) * 1.5);
+    gap: var(--section-gap);
 }
 
-/* BPM Display */
-.bpm-display {
-    text-align: center;
+/* Tempo Display */
+.tempo-display-container {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    padding: var(--section-gap);
+    min-height: calc(var(--container-height) * 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bpm-value {
-    font-size: clamp(3rem, 12vw, 5rem);
+.tempo-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 2);
+}
+
+#bpm {
+    font-size: 7rem;
     font-weight: 700;
-    letter-spacing: -0.05em;
     line-height: 1;
+    color: var(--accent-color);
 }
 
-.bpm-text {
-    font-size: clamp(0.875rem, 3vw, 1.25rem);
-    font-weight: 700;
-    margin-left: 0.5rem;
+.bpm-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    opacity: 0.7;
 }
 
 /* Tempo Controls */
+.tempo-container {
+    background: var(--secondary-bg);
+    padding: calc(var(--spacing-unit) * 3);
+    border-radius: var(--border-radius);
+    height: var(--container-height);
+}
+
 .tempo-settings {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: var(--spacing-unit);
+    gap: calc(var(--spacing-unit) * 4);
     align-items: center;
+    height: 100%;
 }
 
 .slider {
     -webkit-appearance: none;
     width: 100%;
     height: 2px;
-    background: #fff;
+    background: var(--text-color);
+    border-radius: 1px;
+    opacity: 0.7;
 }
 
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    background: #fff;
+    width: 12px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 50%;
     cursor: pointer;
+    border: none;
+}
+
+/* Beat Boxes */
+.beat-boxes {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2);
+    padding: calc(var(--spacing-unit) * 2);
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    height: var(--container-height);
+}
+
+.beat-box {
+    background: var(--bg-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    height: 100%;
+    flex: 1;
+}
+
+.beat-box.active {
+    background: var(--accent-color);
 }
 
 /* Buttons */
 button {
-    background: none;
-    border: 2px solid #fff;
-    color: #fff;
+    background: var(--secondary-bg);
+    border: none;
+    color: var(--text-color);
     font-family: inherit;
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: calc(var(--spacing-unit) * 3);
     cursor: pointer;
-    min-width: 36px;
-    min-height: 36px;
+    min-width: 40px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: calc(var(--border-radius) / 2);
+    transition: all 0.2s ease;
     letter-spacing: 0.1em;
 }
 
 button:hover {
-    background: #fff;
-    color: #000;
+    background: var(--accent-color);
+    color: var(--bg-color);
 }
 
-.tempo-btn, .beats-btn {
-    font-size: 1.25rem;
-    padding: 0;
-    width: 32px;
-    height: 32px;
+.tempo-btn {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: calc(var(--spacing-unit) * 2);
+    height: calc(var(--container-height) - calc(var(--spacing-unit) * 6));
 }
 
-/* Controls Layout */
+.play-btn {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    width: 100%;
+    padding: calc(var(--spacing-unit) * 4);
+    border-radius: var(--border-radius);
+    font-weight: 700;
+    font-size: 1rem;
+    height: var(--container-height);
+}
+
+.play-btn:hover {
+    background: #FFE933;
+    transform: translateY(-1px);
+}
+
+/* Controls Section */
 .controls {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-unit);
+    grid-template-columns: 1fr;
+    gap: var(--section-gap);
 }
 
-/* Beat Settings */
-.beat-settings {
-    display: grid;
-    gap: var(--spacing-unit);
+#tap-btn {
+    background: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    padding: calc(var(--spacing-unit) * 4);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    height: var(--container-height);
 }
 
-@media (min-width: 480px) {
-    .beat-settings {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-    }
+/* Accent Container */
+.accent-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondary-bg);
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 8);
+    border-radius: var(--border-radius);
+    height: var(--container-height);
 }
 
-.accent-control {
+.accent-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+}
+
+.accent-checkbox {
     display: flex;
     align-items: center;
-    gap: calc(var(--spacing-unit) * 0.75);
 }
 
-.accent-control label {
-    font-size: clamp(0.75rem, 2vw, 0.875rem);
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-}
-
-.beats-control {
+/* Beats Container */
+.beats-container {
     display: grid;
-    grid-template-columns: auto auto auto;
-    gap: var(--spacing-unit);
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: calc(var(--spacing-unit) * 2);
+    height: var(--container-height);
+    background: var(--secondary-bg);
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+}
+
+.decrease-container,
+.count-container,
+.increase-container {
+    height: 100%;
+    background: var(--bg-color);
+    border-radius: calc(var(--border-radius) / 2);
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#beat-count {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: 700;
-    min-width: 2ch;
-    text-align: center;
+.beats-container button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
 }
 
-/* States */
-.active {
-    background: #fff;
-    color: #000;
+.beats-container button:hover {
+    background: var(--accent-color);
 }
 
-/* Custom Checkbox */
 .custom-checkbox {
-    position: relative;
-    display: inline-block;
-    width: 32px;
-    height: 32px;
+    display: flex;
+    align-items: center;
     cursor: pointer;
 }
 
 .custom-checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+    display: none;
 }
 
 .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 32px;
-    height: 32px;
-    border: 2px solid #fff;
-    transition: all 0.2s;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--text-color);
+    border-radius: 4px;
+    position: relative;
 }
 
 .checkmark:after {
-    content: "";
+    content: '';
     position: absolute;
-    display: block;
-    left: 8px;
-    top: 8px;
-    width: 12px;
-    height: 12px;
-    background-color: #fff;
-    opacity: 0;
-    transition: opacity 0.2s;
+    display: none;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--accent-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
 
 .custom-checkbox input:checked ~ .checkmark:after {
-    opacity: 1;
+    display: block;
 }
 
-@media (max-width: 380px) {
-    .custom-checkbox {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .checkmark {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .checkmark:after {
-        left: 6px;
-        top: 6px;
-        width: 8px;
-        height: 8px;
-    }
+#beat-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
 }
 
-/* Mobile Optimizations */
-@media (max-width: 380px) {
-    .controls {
-        grid-template-columns: 1fr;
-    }
-    
-    button {
-        width: 100%;
-    }
-}
-
-/* Beat Circles */
-.beat-circles {
-    display: flex;
-    justify-content: center;
-    gap: calc(var(--spacing-unit) * 0.5);
-    margin: calc(var(--spacing-unit)) 0;
-    min-height: 32px;
-}
-
-.beat-circle {
-    width: 32px;
-    height: 32px;
-    border: 2px solid #fff;
-    transition: background-color 0.1s ease;
-}
-
-.beat-circle.active {
-    background-color: #fff;
-}
-
-.beat-circle.accent {
-    border-width: 3px;
-}
-
-@media (max-width: 480px) {
-    .beat-circles {
-        gap: calc(var(--spacing-unit) * 0.25);
-    }
-    
-    .beat-circle {
-        width: 24px;
-        height: 24px;
-    }
+/* Settings Container */
+.settings-container {
+    display: grid;
+    gap: var(--section-gap);
+    background: var(--secondary-bg);
+    padding: var(--section-gap);
+    border-radius: var(--border-radius);
 }

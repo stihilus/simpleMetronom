@@ -34,25 +34,26 @@ class Metronome {
     }
 
     updateBeatCircles() {
-        // Clear existing circles
-        this.beatCirclesContainer.innerHTML = '';
+        this.createBeatBoxes(this.beats);
+    }
+
+    createBeatBoxes(count) {
+        const container = document.getElementById('beat-circles');
+        container.innerHTML = '';
         
-        // Create new circles
-        for (let i = 0; i < this.beats; i++) {
-            const circle = document.createElement('div');
-            circle.className = 'beat-circle';
-            if (i === 0) circle.classList.add('accent');
-            this.beatCirclesContainer.appendChild(circle);
+        for (let i = 0; i < count; i++) {
+            const box = document.createElement('div');
+            box.className = 'beat-box';
+            if (i === 0) box.classList.add('accent');
+            container.appendChild(box);
         }
+        this.beatCircles = document.querySelectorAll('.beat-box');
     }
 
     updateActiveBeat() {
-        const circles = this.beatCirclesContainer.children;
-        for (let i = 0; i < circles.length; i++) {
-            circles[i].classList.remove('active');
-        }
+        this.beatCircles.forEach((circle) => circle.classList.remove('active'));
         if (this.isPlaying) {
-            circles[this.currentBeat].classList.add('active');
+            this.beatCircles[this.currentBeat].classList.add('active');
         }
     }
 
