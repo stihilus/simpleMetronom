@@ -1,0 +1,277 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --spacing-unit: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-unit);
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: var(--spacing-unit);
+    border: 2px solid #fff;
+}
+
+/* Typography */
+.title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin-bottom: var(--spacing-unit);
+    text-align: center;
+}
+
+.metronome {
+    display: grid;
+    gap: calc(var(--spacing-unit) * 1.5);
+}
+
+/* BPM Display */
+.bpm-display {
+    text-align: center;
+}
+
+.bpm-value {
+    font-size: clamp(3rem, 12vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.bpm-text {
+    font-size: clamp(0.875rem, 3vw, 1.25rem);
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+/* Tempo Controls */
+.tempo-settings {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--spacing-unit);
+    align-items: center;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    cursor: pointer;
+}
+
+/* Buttons */
+button {
+    background: none;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: inherit;
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
+    cursor: pointer;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+}
+
+button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.tempo-btn, .beats-btn {
+    font-size: 1.25rem;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+}
+
+/* Controls Layout */
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-unit);
+}
+
+/* Beat Settings */
+.beat-settings {
+    display: grid;
+    gap: var(--spacing-unit);
+}
+
+@media (min-width: 480px) {
+    .beat-settings {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+}
+
+.accent-control {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 0.75);
+}
+
+.accent-control label {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+
+.beats-control {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: var(--spacing-unit);
+    align-items: center;
+    justify-content: center;
+}
+
+#beat-count {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: 700;
+    min-width: 2ch;
+    text-align: center;
+}
+
+/* States */
+.active {
+    background: #fff;
+    color: #000;
+}
+
+/* Custom Checkbox */
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #fff;
+    transition: all 0.2s;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 8px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    opacity: 1;
+}
+
+@media (max-width: 380px) {
+    .custom-checkbox {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .checkmark {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .checkmark:after {
+        left: 6px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 380px) {
+    .controls {
+        grid-template-columns: 1fr;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
+
+/* Beat Circles */
+.beat-circles {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--spacing-unit) * 0.5);
+    margin: calc(var(--spacing-unit)) 0;
+    min-height: 32px;
+}
+
+.beat-circle {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #fff;
+    transition: background-color 0.1s ease;
+}
+
+.beat-circle.active {
+    background-color: #fff;
+}
+
+.beat-circle.accent {
+    border-width: 3px;
+}
+
+@media (max-width: 480px) {
+    .beat-circles {
+        gap: calc(var(--spacing-unit) * 0.25);
+    }
+    
+    .beat-circle {
+        width: 24px;
+        height: 24px;
+    }
+}

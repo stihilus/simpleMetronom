@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metronome</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="title">METRONOME</header>
+        
+        <div class="metronome">
+            <div class="bpm-display">
+                <div class="bpm-value">
+                    <span id="bpm">60</span>
+                    <span class="bpm-text">BPM</span>
+                </div>
+            </div>
+            
+            <div class="beat-circles" id="beat-circles">
+                <!-- Circles will be added by JavaScript -->
+            </div>
+
+            <div class="tempo-settings">
+                <button class="tempo-btn" id="decrease">−</button>
+                <input type="range" min="20" max="240" step="1" value="60" class="slider" id="tempo-slider">
+                <button class="tempo-btn" id="increase">+</button>
+            </div>
+
+            <div class="controls">
+                <button id="tap-btn">TAP TEMPO</button>
+                <button id="start-stop" class="play-btn">START</button>
+            </div>
+
+            <div class="beat-settings">
+                <label class="accent-control">
+                    <div class="custom-checkbox">
+                        <input type="checkbox" id="accent-first">
+                        <span class="checkmark"></span>
+                    </div>
+                    <span class="accent-label">ACCENT FIRST BEAT</span>
+                </label>
+                <div class="beats-control">
+                    <button class="beats-btn" id="decrease-beats">−</button>
+                    <span id="beat-count">4</span>
+                    <button class="beats-btn" id="increase-beats">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
